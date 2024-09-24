@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create a New Blog Post</title>
+  <link rel="stylesheet" href="blogstyles.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Edit Blog Post</h2>
+    <form id="blogPostForm" >
+      <div class="form-group">
+        <label for="title">Blog Title</label>
+        <input type="text" id="title" name="title" required placeholder="Enter the blog title">
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea id="content" name="content" rows="10" required placeholder="Write your content here..."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select id="country" name="country" >
+          <option value="" disabled selected>Select Country</option>
+          <option value="USA">USA</option>
+          <option value="India">India</option>
+          <option value="Canada">Canada</option>
+        </select>
+      </div>
+
+      <!-- State -->
+      <div class="form-group">
+        <label for="state">State</label>
+        <select id="state" name="state" >
+          <option value="" disabled selected>Select State</option>
+        </select>
+      </div>
+
+      <!-- City -->
+      <div class="form-group">
+        <label for="city">City</label>
+        <select id="city" name="city" >
+          <option value="" disabled selected>Select City</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Featured Image</label>
+        <input type="file" id="image" name="image" accept="image/*">
+        <img id="imagePreview" src="" alt="Image Preview" style="display: none;">
+      </div>
+
+      <button type="" id="but" class="submit-btn" >Publish Blog</button>
+    </form>
+  </div>
+  
+  <script>
+    let token = localStorage.getItem("token");
+    if (token == null) {
+        window.location.href = 'login.html';
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const b_id = urlParams.get('param1');
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('imagePreview');
+    async function find() {
+        let blog=await fetch('/find_blog',{
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ b_id })
+      });
+      
+      blog= await blog.json();
+      console.log(blog);
+      document.getElementById('title').value=blog.title;
+    document.getElementById('content').value=blog.desc;
+    }
+    find();
+    let imagePath ="/images/"
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          //imagePreview.style.display = 'block';
+          imagePreview.src = e.target.result;
+          imagePath=imagePath + file.name;
+          console.log(imagePath)
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    const blogForm= document.getElementById('but');
+
+
+    blogForm.addEventListener('click', async (e) => {
+      event.preventDefault();
+      const title = document.getElementById('title').value;
+      const desc =document.getElementById('content').value;
+      console.log("2")
+      const res = await fetch('/api/edit', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ b_id ,title,desc,imagePath ,token})
+        });
+        
+        console.log(res)
+      if(res.ok){
+        const blog=await res.json()
+        await alert("sucessfully update")
+        window.location.href = document.referrer;
+      }
+      else{
+        const error=await res.json()
+        alert(error.message);
+      }
+    });
+  </script>
+</body>
+</html>

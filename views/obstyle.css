@@ -1,0 +1,42 @@
+body{
+    font-family:  Georgia,  "Times New Roman", Times, serif;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.head{
+    font-size:35px;
+    font-weight:600;
+}
+.bo{
+    font-size: 21px;
+    font-weight: 300;
+}
+.auth{
+    font-size: medium;
+    color: grey;
+}
+.obimg{
+    max-width:80% ;
+    max-height:85hv;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.adbut{
+    margin-left: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(196, 99, 74);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top:15px;
+
+}
+#but{
+    display: flex;
+    justify-content: right;
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Section</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        h1.text-center {
+            font-size: clamp(3rem, 5rem, 6rem);
+            
+
+        }
+
+        #full_div {
+           
+            font-family: Georgia, "Times New Roman", Times, serif !important;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar bg-dark " style="  font-family:  Georgia,Times New Roman, Times, serif" ;></nav>
+    <div class=" mt-3 container-fluid border-bottom border-white privacy-heade privacy-header">
+
+        <a href="/"> <img src="./logo2.png" alt="logo" width="120" height="100"
+                class="navbar-brand img-thumbnail border-0  mb-3" style="cursor: pointer;background-color:white;"></a>
+    </div>
+    </nav>
+    <div class="container" id="full_div">
+        <h1 class="text-center text-decoration-underline border border-dark fw-bold"
+        style="font-family: 'Courier New', Courier, monospace;">Help</h1>
+
+        <h1>Welcome to the Help Center!
+        </h1>
+        <p>We’re here to guide you through any questions or challenges you may encounter while using our blog website.
+            Below, you’ll find answers to common questions, along with tips to help you make the most of your
+            experience.</p>
+
+
+        <div id="helpAccordion" class="accordion">
+
+            <!-- Item 1 -->
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            How to Create a Blog Post?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#helpAccordion">
+                    <div class="card-body">
+                        1. Log in to your account. <br>
+                        2. Navigate to the “Create Post” section from your dashboard. <br>
+                        3. Fill in the title, content, and any tags related to your post. <br>
+                        4. Optionally, upload images to enhance your post. <br>
+                        5. Click "Publish" to make your post live, or "Save Draft" to come back later.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            How Do I Edit or Delete a Post?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#helpAccordion">
+                    <div class="card-body">
+                        1. To edit a post, go to your profile, find the post, and click “Edit.”<br>
+                        2. To delete a post, click the "Delete" button next to the post.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            How Can I Comment on a Post?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#helpAccordion">
+                    <div class="card-body">
+                        <ol type="1">
+                            <li>Ensure you’re logged in.</li>
+                            <li>Scroll down to the comments section of any blog post.</li>
+                            <li>Enter your comment in the text box and click "Submit." Your comment will appear below
+                                the
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more items as needed -->
+            <div class="card">
+                <div class="card-header" id="headingfour">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapsefour" aria-expanded="false" aria-controls="collapseThree">
+                            How to Follow Other Bloggers?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#helpAccordion">
+                    <div class="card-body">
+                        <ol type="1">
+                            <li>Visiting their profile page.</li>
+                            <li>Clicking the “Follow” button. You'll get notified when they publish new content.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingfive">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                            What to Do If I Forget My Password?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#helpAccordion">
+                    <div class="card-body">
+                        <ol type="1">
+                            <li>Go to the login page and click on “Forgot Password.”</li>
+                            <li>Enter your email address, and we’ll send a link to reset your password.
+                            </li>
+                            <li>Follow the instructions in the email to set a new password.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingsix">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+                            How to Customize My Profile?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#helpAccordion">
+                    <div class="card-body">
+                        <ol type="1">
+                            <li>Logging in to your account.</li>
+                            <li>Navigating to the “Profile” section.</li>
+                            <li>From there, you can update your bio, profile picture, and any personal details.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="card ">
+                <div class="card-header" id="headingseven">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+                            How to Report Issues or Contact Support?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#helpAccordion">
+                    <div class="card-body pb-3 mb-3">
+                        <ol type="1">
+                            <li>You can contact our support team via the “Contact Us” page.</li>
+                            <li>Alternatively, send us an email at <a
+                                    href="mailto:sblogify@gmail.com">sblogify@gmail.com</a>, and we’ll respond within
+                                24-48 hours.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

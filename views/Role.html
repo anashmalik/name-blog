@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Role Form</title>
+    <link rel="stylesheet" href="role_styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <div onclick="dback()" style="margin-top: 15px;"><img src="./images/go_back.png" alt="back" height="25px"></div>
+        <div class="form-title">
+            <h2>Create Role</h2>
+        </div>
+
+        <form id="createRoleForm">
+            
+            <div class="form-group">
+                <label for="role-name">Role Name:</label>
+                <input type="text" id="role-name" name="role_name" placeholder="Enter role name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="permissions">Allow Permissions:-</label>
+                <div class="permissions-list">
+                    
+                    <label><input type="checkbox" name="permissions[]" value=2>  Write Blog</label>
+                    <label><input type="checkbox" name="permissions[]" value=3>  Edit Blog</label>
+                    <label><input type="checkbox" name="permissions[]" value=4>  Delete Blog</label>
+                    <label><input type="checkbox" name="permissions[]" value=5>  Deactivate Blog</label>
+                    <label><input type="checkbox" name="permissions[]" value=6>  Create User</label>
+                    <label><input type="checkbox" name="permissions[]" value=7>  All User</label>
+                    <label><input type="checkbox" name="permissions[]" value=8>  Delete User</label>
+                    <label><input type="checkbox" name="permissions[]" value=9>  Delete Other's Blog</label>
+                    <label><input type="checkbox" name="permissions[]" value=10> Deactivate Other's Blog </label>
+                    <label><input type="checkbox" name="permissions[]" value=11> Add Role </label>
+                    <label><input type="checkbox" name="permissions[]" value=12> All Blog </label>
+                    <label><input type="checkbox" name="permissions[]" value=13> My Blog</label>
+                    <label><input type="checkbox" name="permissions[]" value=14> All Deactivate Blog</label>
+                    <label><input type="checkbox" name="permissions[]" value=15> My Deactivate Blog</label>
+                    <label><input type="checkbox" name="permissions[]" value=16> Edit Other's Blog</label>
+                    <label><input type="checkbox" name="permissions[]" value=17> Add Category</label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Create</button>
+        </form>
+    </div>
+    <script src="role.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cat_styles.css">
+    <title>Categories</title>
+</head>
+<body>
+    <div class="container">
+        <div onclick="dback()" style="margin-top: 15px;"><img src="./images/go_back.png" alt="back" height="25px"></div>
+        <h1>Categories</h1>
+        <ul>
+            <% cat.forEach(category => { %>
+                <li><%= category.category_name %></li>
+            <% }) %>
+        </ul>
+
+        <h2>Add New Category</h2>
+        <form id="cate" >
+            <input type="text" id="category" placeholder="New Category" required>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <script src="cat_script.js"></script>
+</body>
+</html>
