@@ -16,7 +16,7 @@ const sequelize = new Sequelize('demo', 'postgres', 'Malik', {
     host: 'localhost',
     dialect: 'postgres',
     logging:false
-  });
+});
 let userModel=null;
 let blogDb=null;
 let Role=null;
