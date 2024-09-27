@@ -1,6 +1,6 @@
 let token = localStorage.getItem("token");
 if (token == null) {
-    window.location.href = 'login.html';
+    window.location.href = 'login';
 }
 async function role() {
   var select = document.getElementById("role");
@@ -24,7 +24,7 @@ if(res.ok){
 async function load(event) {
     event.preventDefault();
         if(!token){
-            window.location.href= 'login.html';
+            window.location.href= 'login';
         }
       let aau=await fetch('/author',{
         method: 'POST',

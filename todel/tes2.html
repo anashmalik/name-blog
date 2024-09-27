@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send OTP</title>
+</head>
+<body>
+    <h2>Enter your mobile number to receive an OTP:</h2>
+    <input type="text" id="mobile" placeholder="Enter mobile number">
+    <button onclick="sendOTP()" id="oo">Send OTP</button>
+
+    <script>
+        function sendOTP() {
+
+            const mobile = document.getElementById('mobile').value;
+            console.log(mobile);
+            fetch('/send-otp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ mobile: mobile }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('OTP sent: ' + data.message);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+        document.getElementById("oo").addEventListener('click',sendOTP());
+    </script>
+    <script src="seq.js"></script>
+</body>
+</html>

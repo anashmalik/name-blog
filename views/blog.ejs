@@ -1,128 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create a New Blog Post</title>
   <link rel="stylesheet" href="blogstyles.css">
 </head>
+
 <body>
   <div class="container">
     <div onclick="dback()" style="margin-top: 15px;"><img src="./images/go_back.png" alt="back" height="25px"></div>
     <h2>Create a New Blog Post</h2>
-    <form id="blogPostForm" >
+    <form id="blogPostForm">
       <div class="form-group">
         <label for="title">Blog Title</label>
-        <input type="text" id="title" name="title"  placeholder="Enter the blog title" required>
+        <input type="text" id="title" name="title" placeholder="Enter the blog title" required>
       </div>
 
       <div class="form-group">
         <label for="content">Content</label>
-        <textarea id="content" name="content" rows="10"  placeholder="Write your content here..." required></textarea>
+        <textarea id="content" name="content" rows="10" placeholder="Write your content here..." required></textarea>
       </div>
       <!-- category -->
-       <div class="form-group">
+      <div class="form-group">
         <label for="category">Category</label>
-          <select name="cat" id="cat" required>
-            <option value="" disabled selected>Select an option</option>
-            <%cat%>
-            <% cat.forEach(ele => { %>
-              <option value="<%=ele.category_name%>"><%=ele.category_name%></option>
-            <%})%>
-            <option value="Other">Other</option>
-          </select>
+        <select name="cat" id="cat" required>
+          <option value="" disabled selected>Select an option</option>
+          <%cat%>
+            <% cat.forEach(ele=> { %>
+              <option value="<%=ele.category_name%>">
+                <%=ele.category_name%>
+              </option>
+              <%})%>
+                <option value="Other">Other</option>
+        </select>
         </label>
-       </div>
-      
+      </div>
+
       <label for="image">Featured Image</label>
       <div class="form-group" style="display: flex;">
-        
+
         <input type="file" id="image" name="image" accept="image/*">
-        <div class="upload" onclick="upload()">Upload</div>
       </div>
-      <button type="submit" id="but" class="submit-btn" >Publish Blog</button>
+      <div >
+        <img src="" alt="" id="imagePreview">
+      </div>
+      <button type="submit" id="but" class="submit-btn">Publish Blog</button>
     </form>
   </div>
   <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
   <script>
     let token = localStorage.getItem("token");
     if (token == null) {
-        window.location.href = 'login.html';
+      window.location.href = 'login';
     }
     CKEDITOR.replace('content');
     const imageInput = document.getElementById('image');
     const imagePreview = document.getElementById('imagePreview');
-    let imagePath =""
-    async function upload() {
-      const form = document.getElementById('blogPostForm');
-      const formData = new FormData(form);
-      const res=await fetch('/api/upload',{
-        method: 'POST',
-        body:formData
-      })
-      if(res.ok){
-        const a=await res.json()
-        imagePath=a.file;
-        await alert(imagePath)
-      }
-      else{
-        const a=await res.json()
-
-        await alert(a.message)
-      }
-    }
+    let imagePath = ""
     imageInput.addEventListener('change', function () {
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-          //imagePreview.style.display = 'block';
+          imagePreview.style.display = 'block';
           imagePreview.src = e.target.result;
-          imagePath=imagePath + file.name;
+          imagePath = imagePath + file.name;
           console.log(imagePath)
         };
         reader.readAsDataURL(file);
       }
     });
-    const blogForm= document.getElementById('blogPostForm');
-     blogForm.addEventListener('submit', async (e) => {
+    const blogForm = document.getElementById('blogPostForm');
+    blogForm.addEventListener('submit', async (e) => {
       event.preventDefault();
-      
-      let aau=await fetch('/a_id',{
+      // img upload sr
+
+      const form = document.getElementById('blogPostForm');
+      const formData = new FormData(form);
+      const res = await fetch('/api/upload', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token })
-      });
-      const a_id =await aau.json();
-      const title = document.getElementById('title').value;
-      const desc = CKEDITOR.instances.content.getData();
-      const category =document.getElementById('cat').value;
-      // const desc =document.getElementById('content').value;
-      console.log({ "b_id":90, a_id ,title,desc,imagePath,category });
-      const response = await fetch('/api/addblog', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({  a_id ,title,desc,"st":true,imagePath,category ,token})
+        body: formData
+      })
+      if (res.ok) {
+        const a = await res.json()
+        imagePath = a.file;
+        let aau = await fetch('/a_id', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token })
+        });
+        const a_id = await aau.json();
+        const title = document.getElementById('title').value;
+        const desc = CKEDITOR.instances.content.getData();
+        const category = document.getElementById('cat').value;
+        // const desc =document.getElementById('content').value;
+        console.log({ "b_id": 90, a_id, title, desc, imagePath, category });
+        const response = await fetch('/api/addblog', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ a_id, title, desc, "st": true, imagePath, category, token })
         });
 
-      if(response.ok){
-        const blog=await response.json()
-        console.log(blog);
-        await alert("blog added sucessfully");
-        // window.location.href="/home";
-        location.reload();
+        if (response.ok) {
+          const blog = await response.json()
+          console.log(blog);
+          await alert("blog added sucessfully");
+          // window.location.href="/home";
+          location.reload();
+        }
+        else {
+          console.log(response)
+          const error = await response.json()
+          let mess = "";
+          // console.log(error)
+          alert(error.message);
+        }
       }
-      else{
-        console.log(response)
-        const error=await response.json()
-        let mess="";
-        console.log(error)
-        alert(error.message);
+      else {
+        const a = await res.json()
+
+        await alert(a.message)
       }
+
+      // img upload en
+
     });
-    function dback(){
+    function dback() {
       history.back();
     }
   </script>
 </body>
+
 </html>

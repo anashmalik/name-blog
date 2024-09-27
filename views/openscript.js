@@ -1,6 +1,6 @@
 let token = localStorage.getItem("token");
 if (token == null) {
-    window.location.href = 'login.html';
+    window.location.href = 'login';
 }
 async function load() {
     const token = localStorage.getItem('token')

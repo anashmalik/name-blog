@@ -1,6 +1,6 @@
 let token = localStorage.getItem("token");
 if (token == null) {
-    window.location.href = 'login.html';
+    window.location.href = 'login';
 }
 function clos() {
     document.getElementById('des').style.display = "none";
@@ -70,7 +70,7 @@ async function load() {
             add_user.innerText = 'Add User';
             add_user.addEventListener('click', () => {
                 document.getElementById('des').style.display = "none";
-                window.location.href = 'add_user.html';
+                window.location.href = 'add_user';
             })
             but.appendChild(add_user);
             but.appendChild(document.createElement('br'));
@@ -81,7 +81,7 @@ async function load() {
             add_user.innerText = 'All Users';
             add_user.addEventListener('click', () => {
                 document.getElementById('des').style.display = "none";
-                window.location.href = 'all_user.html';
+                window.location.href = 'all_user';
             })
             but.appendChild(add_user);
             but.appendChild(document.createElement('br'));
@@ -93,7 +93,7 @@ async function load() {
             add_user.innerText = 'Add Role';
             add_user.addEventListener('click', () => {
                 document.getElementById('des').style.display = "none";
-                window.location.href = 'role.html';
+                window.location.href = 'role';
             })
             but.appendChild(add_user);
             but.appendChild(document.createElement('br'));
@@ -154,6 +154,17 @@ async function load() {
             but.appendChild(add_user);
             but.appendChild(document.createElement('br'));
         }
+        if (array.includes(18)) {
+          let add_user = document.createElement('button');
+          add_user.classList.add('adbut');
+          add_user.innerText = 'Delete Role';
+          add_user.addEventListener('click', () => {
+              document.getElementById('des').style.display = "none";
+              window.location.href = 'delete_role';
+          })
+          but.appendChild(add_user);
+          but.appendChild(document.createElement('br'));
+      }
     }
 }
 

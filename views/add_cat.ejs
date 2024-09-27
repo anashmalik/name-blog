@@ -12,7 +12,10 @@
         <h1>Categories</h1>
         <ul>
             <% cat.forEach(category => { %>
-                <li><%= category.category_name %></li>
+                <li style="align-items: center;">
+                    <%= category.category_name %> 
+                    <img  src="./images/delete.png" alt="Delete" height="20px" style="float: right;" onclick="delete_cat('<%= category.category_name %>')">
+                </li>
             <% }) %>
         </ul>
 

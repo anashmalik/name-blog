@@ -5,9 +5,7 @@
     width: 56%;
     margin-bottom: 5px;
 }
-.li div button{
-    position: absolute;
-    left: 50%;
+button {
     color:red;
     background-color: white;
     border: none;

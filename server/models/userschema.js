@@ -1,3 +1,4 @@
+import { type } from "os";
 import { DataTypes } from "sequelize";
 export const createuser=async(sequelize)=>{
     const User = await sequelize.define('User', {
@@ -41,7 +42,6 @@ export const createblog=async(sequelize)=>{
     },
     title:{
       type:DataTypes.STRING,
-     
     },
     desc:{
       type:DataTypes.TEXT,

@@ -12,7 +12,7 @@ f.addEventListener('submit', async () => {
     if (re.ok) {
         let a = await re.json();
         await alert(a);
-        history.back();
+        location.reload();
     }
     else {
         let a = await re.json();
@@ -21,4 +21,21 @@ f.addEventListener('submit', async () => {
 })
 function dback() {
     history.back();
+}
+
+ async function delete_cat(name){
+    console.log(name)
+let re =await fetch('/delete_cat',{
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name })
+});
+if(re.ok){
+    re=await re.json();
+    await alert(re)
+    location.reload();
+}
+else{
+    await  alert("not deleted")
+}
 }

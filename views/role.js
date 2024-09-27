@@ -1,6 +1,6 @@
 let token = localStorage.getItem("token");
 if (token == null) {
-    window.location.href = 'login.html';
+    window.location.href = 'login';
 }
 document.getElementById('createRoleForm').addEventListener('submit', async function(event) {
     event.preventDefault(); 

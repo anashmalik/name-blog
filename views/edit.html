@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="container">
+    <div onclick="dback()" style="margin-top: 15px;"><img src="./images/go_back.png" alt="back" height="25px"></div>
     <h2>Edit Blog Post</h2>
     <form id="blogPostForm" >
       <div class="form-group">
@@ -20,33 +21,7 @@
         <textarea id="content" name="content" rows="10" required placeholder="Write your content here..."></textarea>
       </div>
       <div class="form-group">
-        <label for="country">Country</label>
-        <select id="country" name="country" >
-          <option value="" disabled selected>Select Country</option>
-          <option value="USA">USA</option>
-          <option value="India">India</option>
-          <option value="Canada">Canada</option>
-        </select>
-      </div>
-
-      <!-- State -->
-      <div class="form-group">
-        <label for="state">State</label>
-        <select id="state" name="state" >
-          <option value="" disabled selected>Select State</option>
-        </select>
-      </div>
-
-      <!-- City -->
-      <div class="form-group">
-        <label for="city">City</label>
-        <select id="city" name="city" >
-          <option value="" disabled selected>Select City</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="image">Featured Image</label>
+        <label for="image">Featured Image (leave empty for no change)</label>
         <input type="file" id="image" name="image" accept="image/*">
         <img id="imagePreview" src="" alt="Image Preview" style="display: none;">
       </div>
@@ -54,11 +29,12 @@
       <button type="" id="but" class="submit-btn" >Publish Blog</button>
     </form>
   </div>
-  
+  <!-- <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script> -->
   <script>
+    // CKEDITOR.replace('content');
     let token = localStorage.getItem("token");
     if (token == null) {
-        window.location.href = 'login.html';
+        window.location.href = 'login';
     }
     const urlParams = new URLSearchParams(window.location.search);
     const b_id = urlParams.get('param1');
@@ -74,7 +50,8 @@
       blog= await blog.json();
       console.log(blog);
       document.getElementById('title').value=blog.title;
-    document.getElementById('content').value=blog.desc;
+      document.getElementById('content').value=blog.desc;
+      
     }
     find();
     let imagePath ="/images/"
@@ -83,7 +60,7 @@
       if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-          //imagePreview.style.display = 'block';
+          imagePreview.style.display = 'block';
           imagePreview.src = e.target.result;
           imagePath=imagePath + file.name;
           console.log(imagePath)
@@ -102,20 +79,23 @@
       const res = await fetch('/api/edit', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ b_id ,title,desc,imagePath ,token})
+        body: JSON.stringify({ b_id ,title,desc ,token})
         });
         
         console.log(res)
       if(res.ok){
         const blog=await res.json()
         await alert("sucessfully update")
-        window.location.href = document.referrer;
+        history.back();
       }
       else{
         const error=await res.json()
         alert(error.message);
       }
     });
+    function dback() {
+      history.back();
+    }
   </script>
 </body>
 </html>
