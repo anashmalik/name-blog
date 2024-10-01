@@ -6,7 +6,7 @@ import {connection} from './server/config/db.js'
 import path from 'path'
 import { fileURLToPath } from 'url';
 const app = express();
-connection()
+await connection()
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

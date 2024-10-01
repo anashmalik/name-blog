@@ -45,7 +45,7 @@ async function load(event) {
         const response =await fetch('/add_user',{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({name,username, password,position,token })
+            body: JSON.stringify({name,username, password,position,token,confirmPassword })
         })
         if(response.ok){
             const b=await response.json()
