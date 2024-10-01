@@ -178,9 +178,21 @@ load();
 
 
 
-document.getElementById('searchButton').addEventListener('click', function() {
+document.getElementById('searchButton').addEventListener('click', to_search);
+document.getElementById('searchQuery').addEventListener("keydown", handleKeyPress);
+function handleKeyPress(event) {
+  if (event.key === "Enter") {
+      event.preventDefault();
+      // console.log("Enter key pressed!");
+      to_search(event);
+  }
+}
+
+
+function to_search(event) {
+  event.preventDefault();
     const searchQuery = document.getElementById('searchQuery').value;
-    console.log("clicked search");
+    // console.log("clicked search");
     if (searchQuery=="" ) {
       window.location.href='/home'
       return;
@@ -219,9 +231,7 @@ document.getElementById('searchButton').addEventListener('click', function() {
         }
       })
       .catch(err => console.error(err));
-  });
-
-
+  }
   function category(cat){
     if(cat=='/home'){
         window.location.href='/home'
