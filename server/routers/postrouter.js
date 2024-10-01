@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { Op } from 'sequelize';
 import fs from 'fs';
 import bcrypt from 'bcrypt';
+import {schema} from './joi_val.js'
 const jwt = jsonwebtoken;
 const pr = express.Router();
 
@@ -85,12 +86,17 @@ pr.post('/author', async (req, res) => {
 }).post('/add_user', async (req, res) => {
     try {
         const { token } = req.body;
+        const {name, username ,password ,confirmPassword} =req.body;
+        const { error } = schema.validate({name, username ,password ,confirmPassword});
+        if (error) {
+        return res.status(400).json({ success: false, message: error.details[0].message });
+        }
         const pos = await jwtDecode(token);
         const permi = await RHashP.findAll({ where: { r_id: pos.pos, p_id: 6 } })
         if (permi.length == 0) {
             return res.status(403).json({ "message": "you are not allowed to add user" })
         }
-        const { name, username, password, position } = req.body;
+        const { position } = req.body;
         const u = await userModel.create({ name, username, password: bcrypt.hashSync(password, 8), position });
         return res.status(200).json({ "message": "user created" });
     } catch (e) {
@@ -98,7 +104,8 @@ pr.post('/author', async (req, res) => {
         // e= await e.json();
         // console.log(e.errors[0].message)
         // (e.errors)
-        return res.status(401).json({ "message": (e.errors[0].message) })
+        console.log(e);
+        return res.status(401).json({ "message": e.errors[0].message })
     }
 }).post('/api/BlogDe', async (req, res) => {
     try {
