@@ -12,8 +12,8 @@
 
 import { Sequelize } from "sequelize";
 import  {createuser,createblog,createrole,createHash,categorytb} from '../models/userschema.js'
-const sequelize = new Sequelize('demo', 'postgres', 'Malik', {
-    host: 'localhost',
+const sequelize = new Sequelize('demo_kvtu', 'demo_kvtu_user', 'Mi0GJjFZ8mAGK7KNI2OMYlY90PQBSWSF', {
+    host: 'dpg-crr67bg8fa8c73el4vk0-a',
     dialect: 'postgres',
     logging:false
 });
