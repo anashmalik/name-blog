@@ -24,7 +24,7 @@ gr.get('/', async (req, res) => {
         res.render('inde', { blogs: [],blogs2:[], counter: 1 })
     }
     else
-        res.render('inde', { blogs: result,blogs2:re counter: 1 })
+        res.render('inde', { blogs: result,blogs2:re, counter: 1 })
 }).get('/home', async (req, res) => {
     const limit = 4;
     const page = req.query.page ? parseInt(req.query.page) : 1;
