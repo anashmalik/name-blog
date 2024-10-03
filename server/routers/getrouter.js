@@ -13,13 +13,18 @@ gr.get('/', async (req, res) => {
     const result = await blogDb.findAll({
         where: { st: true }, order: [
             ['createdAt', 'DESC']
-        ], limit: 5
+        ], limit: 4
+    });
+    const re = await blogDb.findAll({
+        where: { st: true }, order: [
+            ['createdAt', 'DESC']
+        ], limit: 7
     });
     if (result.length == 0) {
-        res.render('inde', { blogs: [], counter: 1 })
+        res.render('inde', { blogs: [],blogs2:[], counter: 1 })
     }
     else
-        res.render('inde', { blogs: result, counter: 1 })
+        res.render('inde', { blogs: result,blogs2:re counter: 1 })
 }).get('/home', async (req, res) => {
     const limit = 4;
     const page = req.query.page ? parseInt(req.query.page) : 1;
