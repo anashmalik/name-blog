@@ -3,8 +3,6 @@ import multer from 'multer';
 import { userModel, blogDb, Role, RHashP, Cat } from '../config/db.js'
 import jsonwebtoken from 'jsonwebtoken'
 import { jwtDecode } from "jwt-decode";
-import { Op } from 'sequelize';
-import fs from 'fs';
 import bcrypt from 'bcrypt';
 import {schema} from './joi_val.js'
 const jwt = jsonwebtoken;
@@ -246,7 +244,10 @@ pr.post('/author', async (req, res) => {
 
 }).post('/api/all_user', async (req, res) => {
     let re = await userModel.findAll({
-        attributes: ['id', 'name']
+        attributes: ['id', 'name','position'],
+        order: [
+            ['id']
+        ]
     },);
     if (re.length > 0) {
         return res.status(200).json(re)
@@ -266,6 +267,25 @@ pr.post('/author', async (req, res) => {
     }
 
 
+}).post('/api/all_role',async(req,res)=>{
+    try {
+        const all_role =await Role.findAll();
+        console.log(all_role);
+        return res.status(200).json(all_role);
+    } catch (e) {
+        return res.status(500).json({"message": "server error"});
+    }
+}).put('/api/update_role',async(req,res)=>{
+    try {
+        const {id,new_val}=req.body;
+        let ax=await userModel.update({position:new_val},{where:{id:id}});
+        console.log(ax)
+        return res.status(200).send("updated");
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send("server error");
+    }
 });
 
 
